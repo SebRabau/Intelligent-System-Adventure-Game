@@ -50,7 +50,7 @@ public class main {
 
 			monster = spawn();
 			System.out.println("A new monster has appeared!");
-			System.out.println("Monster "+round+" stats: Intelligence "+monster[0]+", Speed "+monster[1]+", Weapon "+monster[2]+", Behaviour "+checkBehaviour(monster[3]));
+			System.out.println("It has "+checkWeapon(monster[2])+". It looks "+checkSpeed(monster[1])+" and "+checkIntelligence(monster[0])+". It acts in a"+checkBehaviour(monster[3])+" manner.");
 
 			System.out.println("Stat differences: Intelligence "+compare(statsP[0], monster[0])+", Speed "+compare(statsP[1], monster[1])+", Weapon "+compare(statsP[2], monster[2]));
 
@@ -218,13 +218,65 @@ public class main {
 		return monster;
 	}
 
+	private static String checkIntelligence(int a) {
+		if(a == 1) {
+			return "very dumb";
+		} else if(a == 2) {
+			return "dumb";
+		} else if(a == 3) {
+			return "fairly smart";
+		} else if(a == 4) {
+			return "smart";
+		} else {
+			return "really smart";
+		}
+	}
+	
+	private static String checkSpeed(int a) {
+		if(a == 1) {
+			return "very slow";
+		} else if(a == 2) {
+			return "slow";
+		} else if(a == 3) {
+			return "fairly fast";
+		} else if(a == 4) {
+			return "fast";
+		} else {
+			return "lightning quick";
+		}
+	}
+	
+	private static String checkWeapon(int a) {
+		String tweapon;
+		int weapon = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+		if(weapon == 1) {
+			tweapon = " teeth";
+		} else if(weapon == 2) {
+			tweapon = " claws";
+		} else {
+			tweapon = " rocks";
+		}
+		
+		if(a == 1) {
+			return "very blunt" + tweapon;
+		} else if(a == 2) {
+			return "blunt" + tweapon;
+		} else if(a == 3) {
+			return "fairly sharp" + tweapon;
+		} else if(a == 4) {
+			return "sharp" + tweapon;
+		} else {
+			return "razor sharp" + tweapon;
+		}
+	}
+	
 	private static String checkBehaviour(int a) {
 		if(a == 1) {
-			return "Scared";
+			return " Scared";
 		} else if(a == 2) {
-			return "Curious";
+			return " Curious";
 		} else {
-			return "Aggressive";
+			return "n Aggressive";
 		}
 	}
 
