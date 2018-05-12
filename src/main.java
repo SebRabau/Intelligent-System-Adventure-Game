@@ -205,7 +205,7 @@ public class main {
 			round++;
 		}
 		System.out.println("------------------------------------------------------------------");
-		System.out.println("Valiant effort young adventurer! You survived "+round+" rounds! Here are your stats from this dungeon:");
+		System.out.println("Valiant effort young adventurer! You survived "+(round-1)+" rounds! Here are your stats from this dungeon:");
 		System.out.println("Monsters Killed: "+nkilled+", Monsters Hypnotised: "+nhypnotised+", Monsters Evaded: "+evaded);
 		System.out.println("------------------------------------------------------------------");
 		
