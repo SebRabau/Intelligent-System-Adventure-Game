@@ -52,17 +52,17 @@ public class main {
 			System.out.println("A new monster has appeared!");
 			System.out.println("It has "+checkWeapon(monster[2])+". It looks "+checkSpeed(monster[1])+" and "+checkIntelligence(monster[0])+". It acts in a"+checkBehaviour(monster[3])+" manner.");
 
-			System.out.println("Stat differences: Intelligence "+compare(statsP[0], monster[0])+", Speed "+compare(statsP[1], monster[1])+", Weapon "+compare(statsP[2], monster[2]));
+			int diffI = compare(statsP[0], monster[0]); //create local variables of all stat differences
+			int diffS = compare(statsP[1], monster[1]);
+			int diffW = compare(statsP[2], monster[2]);
+			
+			System.out.println("Stat differences: Intelligence "+diffI+", Speed "+diffS+", Weapon "+diffW);
 
 			if(monster[3] == 1) { //If monster scared, ignore choice selection
 				choice = 4;
 				System.out.println("The monster looks scared! You do nothing this turn to see if it runs away");
 			} else {
-				while(player) {	
-					int diffI = compare(statsP[0], monster[0]); //create local variables of all stat differences
-					int diffS = compare(statsP[1], monster[1]);
-					int diffW = compare(statsP[2], monster[2]);
-					
+				while(player) {						
 					if(diffI >= 2) { //Can you hypnotise?
 						choice = 1;
 						break;
@@ -190,6 +190,7 @@ public class main {
 					evaded++;
 				} else if(monster[3] == 2) { //Monster was curious
 					System.out.println("The curious creature watches you pass by");
+					evaded++;
 				} else {
 					System.out.println("The monster was aggressive and challenges you to combat!");
 					int killed = compare(statsP[2], monster[2]); //Will the player lose?
