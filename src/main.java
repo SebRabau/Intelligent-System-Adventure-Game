@@ -40,7 +40,7 @@ public class main {
 
 		while(player) {
 			int statsP[] = {4, 3, 2}; //stat reset
-			boolean I = false;
+			boolean I = false; //Item resets (reset boolean to avoid printing to console)
 			boolean S = false;
 			boolean W = false;
 
@@ -48,7 +48,7 @@ public class main {
 			System.out.println("Round: "+round);
 			System.out.println("------------------------------------------------------------------");
 
-			monster = spawn();
+			monster = spawn(); //spawn new monster
 			System.out.println("A new monster has appeared!");
 			System.out.println("It has "+checkWeapon(monster[2])+". It looks "+checkSpeed(monster[1])+" and "+checkIntelligence(monster[0])+". It acts in a"+checkBehaviour(monster[3])+" manner.");
 
@@ -59,7 +59,7 @@ public class main {
 				System.out.println("The monster looks scared! You do nothing this turn to see if it runs away");
 			} else {
 				while(player) {	
-					int diffI = compare(statsP[0], monster[0]);
+					int diffI = compare(statsP[0], monster[0]); //create local variables of all stat differences
 					int diffS = compare(statsP[1], monster[1]);
 					int diffW = compare(statsP[2], monster[2]);
 					
@@ -91,7 +91,7 @@ public class main {
 						break;
 					}
 
-					if(diffW + 2 >= 0 && inv[2] != null) { //Use items
+					if(diffW + 2 >= 0 && inv[2] != null) { //If you have an item, and using it will allow you to win, use items
 						statsP[2] += 2;
 						choice = 3;
 						inv[2] = (String) null;
@@ -119,13 +119,13 @@ public class main {
 			
 			if(choice == 1) {
 				System.out.println("You have chosen to Hypnotise the enemy!");
-				if(I) {
+				if(I) { //If item used
 					System.out.println("You use your Textbook to increase your Intelligence temporarily by 2");
 				}
-				int killed = compare(statsP[0], monster[0]);
+				int killed = compare(statsP[0], monster[0]); //Will the player lose?
 				if(killed < 0) {
 					System.out.println("Oh no! The monster was smarter than you! You have failed this time adventurer...");
-					player = false;
+					player = false; //Player dead
 				} else if(killed == 0) {
 					System.out.println("It's a stalemate! The monster runs away in fear");
 					evaded++;
@@ -144,10 +144,10 @@ public class main {
 				}
 			} else if(choice == 2) {
 				System.out.println("You have chosen to Flee from the enemy!");
-				if(S) {
+				if(S) { //If item used
 					System.out.println("You use your Jetpack to increase your Speed temporarily by 2");
 				}
-				int killed = compare(statsP[1], monster[1]);
+				int killed = compare(statsP[1], monster[1]); //Will the player lose?
 				if(killed < 0) {
 					System.out.println("Oh no! The monster was quicker than you! You have failed this time adventurer...");
 					player = false;
@@ -160,10 +160,10 @@ public class main {
 				}
 			} else if(choice == 3) {
 				System.out.println("You have chosen to Fight the enemy!");
-				if(W) {
+				if(W) { //If item used
 					System.out.println("You use your Flashgun to increase your Weapon temporarily by 2");
 				}
-				int killed = compare(statsP[2], monster[2]);
+				int killed = compare(statsP[2], monster[2]); //Will the player lose?
 				if(killed < 0) {
 					System.out.println("Oh no! The monster was stronger than you! You have failed this time adventurer...");
 					player = false;
@@ -189,11 +189,10 @@ public class main {
 					System.out.println("You were right, the monster ran away!");
 					evaded++;
 				} else if(monster[3] == 2) { //Monster was curious
-					System.out.println("You engage in an intense staring contest with the monster. It lasts so long that you feint and the monster eats you...");
-					player = false;
+					System.out.println("The curious creature watches you pass by");
 				} else {
 					System.out.println("The monster was aggressive and challenges you to combat!");
-					int killed = compare(statsP[2], monster[2]);
+					int killed = compare(statsP[2], monster[2]); //Will the player lose?
 					if(killed < 0) {
 						System.out.println("Oh no! The monster was stronger than you! You have failed this time adventurer...");
 						player = false;
@@ -248,7 +247,7 @@ public class main {
 	
 	private static String checkWeapon(int a) {
 		String tweapon;
-		int weapon = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+		int weapon = ThreadLocalRandom.current().nextInt(1, 3 + 1); //Randomise weapon type
 		if(weapon == 1) {
 			tweapon = " teeth";
 		} else if(weapon == 2) {
